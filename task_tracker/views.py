@@ -3,6 +3,7 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status 
 from rest_framework.generics import RetrieveUpdateAPIView, ListCreateAPIView 
+from rest_framework.viewsets import ModelViewSet
 #my imports
 from .models import Task
 from .serializers import TaskSerializer 
@@ -46,5 +47,10 @@ class Tasks(ListCreateAPIView):
     
     
 class TaskDetail(RetrieveUpdateAPIView):
+    queryset= Task.objects.all()
+    serializer_class = TaskSerializer
+
+
+class TaskMVS(ModelViewSet):
     queryset= Task.objects.all()
     serializer_class = TaskSerializer
